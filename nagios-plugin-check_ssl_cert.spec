@@ -12,6 +12,7 @@ Source1:	check_ssl_cert.cfg
 URL:		https://trac.id.ethz.ch/projects/nagios_plugins/wiki/check_ssl_cert
 Requires:	expect
 Requires:	nagios-common
+Requires:	openssl-tools
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
