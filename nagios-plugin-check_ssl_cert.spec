@@ -15,6 +15,7 @@ BuildRequires:	rpm >= 4.4.9-56
 Requires:	expect
 Requires:	nagios-common
 Requires:	sed >= 4.0
+Requires:	which
 Suggests:	ca-certificates-update
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
