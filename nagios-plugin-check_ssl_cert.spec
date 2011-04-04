@@ -3,11 +3,12 @@ Summary:	Nagios plugin to check the CA and validity of an X.509 certificate
 Summary(pl.UTF_8):	Wtyczka Nagiosa sprawdzająca CA i ważność certyfikatu X.509
 Name:		nagios-plugin-%{plugin}
 Version:	1.9.1
-Release:	0.1
+Release:	1
 License:	GPL v3
 Group:		Networking
 Source0:	https://trac.id.ethz.ch/projects/nagios_plugins/downloads/%{plugin}-%{version}.tar.gz
 # Source0-md5:	26b768e65e244f1057b443d7b4c8d49d
+Source1:	check_ssl_cert.cfg
 URL:		https://trac.id.ethz.ch/projects/nagios_plugins/wiki/check_ssl_cert
 Requires:	expect
 Requires:	nagios-common
@@ -32,35 +33,12 @@ jego poprawność.
 %prep
 %setup -q -n %{plugin}-%{version}
 
-cat > %{plugin}.cfg <<'EOF'
-# Usage:
-# %{plugin}
-define command {
-	command_name    %{plugin}
-	command_line    %{plugindir}/%{plugin} -H $HOSTADDRESS$ $ARG1$
-}
-
-define service {
-	use                     generic-service
-	name                    template
-	service_description     template
-	register                0
-
-	normal_check_interval   5
-	retry_check_interval    1
-
-	notification_interval   10
-
-	check_command           %{plugin}
-}
-EOF
-
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{plugindir},%{_mandir}/man1}
 install -p %{plugin} $RPM_BUILD_ROOT%{plugindir}/%{plugin}
-cp -a %{plugin}.cfg $RPM_BUILD_ROOT%{_sysconfdir}/%{plugin}.cfg
-install -p check_ssl_cert.1 $RPM_BUILD_ROOT%{_mandir}/man1
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/%{plugin}.cfg
+cp -p check_ssl_cert.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
