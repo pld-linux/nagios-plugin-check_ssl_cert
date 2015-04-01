@@ -2,12 +2,12 @@
 Summary:	Nagios plugin to check the CA and validity of an X.509 certificate
 Summary(pl.UTF-8):	Wtyczka Nagiosa sprawdzająca CA i ważność certyfikatu X.509
 Name:		nagios-plugin-%{plugin}
-Version:	1.11.0
+Version:	1.17.0
 Release:	1
 License:	GPL v3
 Group:		Networking
 Source0:	https://trac.id.ethz.ch/projects/nagios_plugins/downloads/%{plugin}-%{version}.tar.gz
-# Source0-md5:	051548a08ee6372c687d200efe148c0f
+# Source0-md5:	d667b8e5ac9fa7f529c854ce45a1f6a5
 Source1:	check_ssl_cert.cfg
 Patch0:		ca_path.patch
 URL:		https://trac.id.ethz.ch/projects/nagios_plugins/wiki/check_ssl_cert
@@ -15,6 +15,8 @@ BuildRequires:	rpm >= 4.4.9-56
 Requires:	expect
 Requires:	nagios-common
 Requires:	openssl-tools >= 0.9.8i-3
+Requires:	perl(Date::Parse)
+Requires:	perl-base
 Requires:	sed >= 4.0
 Requires:	which
 Suggests:	ca-certificates-update
@@ -23,7 +25,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/nagios/plugins
 %define		plugindir	%{_prefix}/lib/nagios/plugins
-%define		openssldir	/etc/openssl/certs
 
 %description
 check_ssl_cert is a Nagios plugin to check X.509 certificates. It
@@ -40,7 +41,6 @@ jego poprawność.
 %prep
 %setup -q -n %{plugin}-%{version}
 %patch0 -p1
-%{__sed} -i -e 's,@cadir@,%{openssldir},' %{plugin}
 
 %install
 rm -rf $RPM_BUILD_ROOT
