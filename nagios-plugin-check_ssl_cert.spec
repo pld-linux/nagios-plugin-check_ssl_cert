@@ -14,6 +14,7 @@ URL:		https://trac.id.ethz.ch/projects/nagios_plugins/wiki/check_ssl_cert
 BuildRequires:	rpm >= 4.4.9-56
 Requires:	expect
 Requires:	nagios-common
+Requires:	openssl-tools >= 0.9.8i-3
 Requires:	sed >= 4.0
 Requires:	which
 Suggests:	ca-certificates-update
@@ -22,11 +23,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/nagios/plugins
 %define		plugindir	%{_prefix}/lib/nagios/plugins
-%if "%{pld_release}" == "th"
 %define		openssldir	/etc/openssl/certs
-%else
-%define		openssldir	/var/lib/openssl/certs
-%endif
 
 %description
 check_ssl_cert is a Nagios plugin to check X.509 certificates. It
