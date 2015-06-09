@@ -2,12 +2,12 @@
 Summary:	Nagios plugin to check the CA and validity of an X.509 certificate
 Summary(pl.UTF-8):	Wtyczka Nagiosa sprawdzająca CA i ważność certyfikatu X.509
 Name:		nagios-plugin-%{plugin}
-Version:	1.17.0
+Version:	1.17.1
 Release:	1
 License:	GPL v3
 Group:		Networking
 Source0:	https://trac.id.ethz.ch/projects/nagios_plugins/downloads/%{plugin}-%{version}.tar.gz
-# Source0-md5:	d667b8e5ac9fa7f529c854ce45a1f6a5
+# Source0-md5:	ffcc0c4debd7d7dc568101b762c34cd9
 Source1:	check_ssl_cert.cfg
 Patch0:		ca_path.patch
 URL:		https://trac.id.ethz.ch/projects/nagios_plugins/wiki/check_ssl_cert
