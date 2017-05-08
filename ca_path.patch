@@ -1,10 +1,10 @@
---- check_ssl_cert-1.17.0/check_ssl_cert~	2014-11-29 18:01:44.000000000 +0200
-+++ check_ssl_cert-1.17.0/check_ssl_cert	2015-04-01 13:45:25.039727047 +0300
-@@ -251,6 +251,7 @@
-     TIMEOUT=15
-     VERBOSE=""
+--- check_ssl_cert-1.45.0/check_ssl_cert~	2017-05-02 15:31:51.000000000 +0300
++++ check_ssl_cert-1.45.0/check_ssl_cert	2017-05-08 10:34:49.121059968 +0300
+@@ -395,6 +395,7 @@
+     # Default values
+     DEBUG=""
      OPENSSL=""
 +    ROOT_CA=/etc/openssl/certs
- 
-     # set the default temp dir if not set
-     if [ -z "${TMPDIR}" ] ; then
+     FILE_BIN=""
+     CURL_BIN=""
+     IGNORE_SSL_LABS_CACHE=""
